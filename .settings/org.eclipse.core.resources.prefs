@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/linkcos/object/constants/ConfigConstants.java=UTF-8
+encoding//src/main/java/com/linkcos/object/dao/BaseDao.java=UTF-8
+encoding//src/main/resource/spring-conf/jdbc.properties=UTF-8
+encoding//src/main/resource/spring-redis/redis.properties=UTF-8
+encoding/<project>=UTF-8

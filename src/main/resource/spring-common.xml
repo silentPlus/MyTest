@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<description>加载资源文件</description>
+	<import resource="classpath:spring-conf/spring-applicationContext.xml" />
+	<!-- <import resource="classpath:spring-static/static-constants.xml" />
+	<import resource="classpath:spring-mybatis/spring-mybatis.xml" /> -->
+	<import resource="classpath:spring-redis/spring-redis.xml" />
+</beans>
