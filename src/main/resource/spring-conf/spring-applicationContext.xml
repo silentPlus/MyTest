@@ -54,8 +54,8 @@
         <property name="config" ref="wall-filter-config" />
     </bean>
     <bean id="wall-filter-config" class="com.alibaba.druid.wall.WallConfig" init-method="init">
-		<!-- <property name="dir" value="META-INF/druid/wall/oracle" />
-		<property name="objectCheck" value="false"/> --><!-- 不使用对象检测 oracle : META-INF/druid/wall/oracle  -->
+		<property name="dir" value="META-INF/druid/wall/mysql" />
+		<property name="objectCheck" value="false"/> <!-- 不使用对象检测 oracle : META-INF/druid/wall/oracle  -->
     </bean>
     
 	<!-- druid Spring配置数据源 -->

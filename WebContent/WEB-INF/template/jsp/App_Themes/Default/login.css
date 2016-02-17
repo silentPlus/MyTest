@@ -1,0 +1,19 @@
+/** Login style **/
+#login{background:#A9D6F6;}
+#login #container{padding-top:90px; }
+
+#login #header{display:none;}
+#login #header h1{}
+
+#login #content{width:563px;height:387px; padding:0px 0 0 0px; background-image:url(login_content.png);background-repeat:no-repeat; margin:auto;}
+
+#login #content table{ color:#0066ac;}
+#login #content table th{height:40px;font-weight:normal; text-align:left; font-family:microsoft yahei, Arial, Helvetica, sans-serif; font-size:14px;}
+#login #content table td{ height:40px;}
+#login #content table td select{ height:24px; width:160px; font-size:14px; border:1px solid #0066ac;}
+#login #content table td .inputs{ height:22px; width:158px;font-size:14px; border:1px solid #0066ac;}
+#login #content table td .btni{ height:34px; width:160px; border:none; background:url(login_submit.png); cursor:pointer;}
+#login #content table tfoot td{ height:48px;}
+
+#login #footer{display:none;}
+
