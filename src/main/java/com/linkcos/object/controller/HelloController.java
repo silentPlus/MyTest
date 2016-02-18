@@ -11,9 +11,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class HelloController {
 	
 	@RequestMapping(value = "/index.html", method = RequestMethod.GET)
-    public ModelAndView index(RedirectAttributes attr) {
+    public ModelAndView index() {
+		System.out.println("123");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mp_index");
+		mav.setViewName("/index");
         return mav;
     }
 }

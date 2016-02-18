@@ -26,7 +26,7 @@ public class OAuth2Aspect extends BaseAspect {
 //    @Autowired
 //    private O2OJdbcBaseDao<WeChatUser> o2oDao;
 
-    @Pointcut("@annotation(com.wuuxiang.i5xwxplus.aop.oauth2.OAuth2)")
+    @Pointcut("@annotation(com.linkcos.object.aop.login.OAuth2)")
     private void pointCut() {}
     /**
      *
