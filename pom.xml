@@ -619,16 +619,6 @@
 				<connection.url><![CDATA[jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true]]></connection.url>
 				<connection.username>root</connection.username>
 				<connection.password>a</connection.password>
-				<!-- <connection.uri><![CDATA[jdbc:oracle:thin:@xxx.xxx.x.xxx:1521]]></connection.uri>
-				<connection.url><![CDATA[jdbc:oracle:thin:@xxx.xxx.x.xxx:1521:xxx]]></connection.url>
-				<connection.username>xxx</connection.username>
-				<connection.password>xxx</connection.password> -->
-				<!-- redis  -->
-				<!-- <redis.connection.pool.maxTotal>10240</redis.connection.pool.maxTotal>
-				<redis.connection.pool.maxIdle>800</redis.connection.pool.maxIdle>
-				<redis.connection.pool.maxWaitMillis>1000</redis.connection.pool.maxWaitMillis>
-				<redis.connection.master.ip>192.168.4.164</redis.connection.master.ip>
-				<redis.connection.master.port>6379</redis.connection.master.port> -->
 				<!-- test -->
 				<test.txt>xuqian</test.txt>
 			</properties>

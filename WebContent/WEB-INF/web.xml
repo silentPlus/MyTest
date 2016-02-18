@@ -1,200 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>MyTest</display-name>
-  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:websocket="http://www.springframework.org/schema/websocket" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd" id="WebApp_ID" version="3.0">
+  <display-name>mytest</display-name>
   <context-param>
-		<param-name>webAppRootKey</param-name>
-		<param-value>MyTest.root</param-value>
-	</context-param>
-	<context-param>
-	    <param-name>log4jConfigLocation</param-name>
-	    <param-value>WEB-INF/classes/log4j.properties</param-value>
-	</context-param>
-	<context-param>
-	    <param-name>log4jRefreshInterval</param-name>
-	      <param-value>3000</param-value>
-	 </context-param>
-	<listener>
-	    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
-	
-  	<!-- 上下文 -->
-	<context-param>
-		<description>上下文的配置</description>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring-common.xml</param-value>
-	</context-param>
-	<!-- 上下文监听器 -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<listener> <!-- Spring 刷新Introspector防止内存泄露 -->
-		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-	</listener>
-	
-	<!-- 字符编码过滤器 -->
-	<filter>
-		<description>字符编码过滤器</description>
-		<filter-name>characterEncodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>characterEncodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-	<!-- hibernateSession过滤器 -->
-	<filter>
-		<filter-name>openSessionInViewFilter</filter-name>
-		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
-		<!-- singleSession默认为true，若设为false则便是没用OpenSessionInView -->
-		<init-param>
-			<param-name>singleSession</param-name>
-			<param-value>true</param-value>
-		</init-param>
-		<!-- 解决Hibernate的Write operations are not allowed in read-only mode (FlushMode.NEVER/MANUAL):Turn 
-			your Session into FlushMode.COMMIT/AUTO or remove 'readOnly' marker from 
-			transaction definition.问题 -->
-		<init-param>
-			<param-name>flushMode</param-name>
-			<param-value>AUTO</param-value>
-		</init-param>
-		<!-- 默认景象下，这个Filter会在Spring的bean池中找一个叫做sessionFactory的bean。若是应用了其他名字的SessionFactory，则应当在这里 -->
-		<init-param>
-			<param-name>sessionFactoryBeanName</param-name>
-			<!--指定对Spring配置中哪个sessionFactory使用OpenSessionInView -->
-			<param-value>sessionFactory</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>openSessionInViewFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-	<!-- springMVC -->
-	<servlet>
-		<description>springDispatcher</description>
-		<servlet-name>springMVC</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:spring-mvc.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>springMVC</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-
-	<!-- druid监控配置 -->
-	<!-- <servlet>
-		<description>druid监控配置</description>
-		<servlet-name>DruidStatView</servlet-name>
-		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
-		<init-param>
-			<param-name>allow</param-name>
-			<param-value>192.168.4.1/24,192.168.9.1/24,192.168.11.1/24,219.150.85.226,219.150.85.232,221.238.19.137,221.238.19.138</param-value>
-		</init-param>
-		<init-param>
-			<param-name>deny</param-name>
-			<param-value>192.168.4.188</param-value>
-		</init-param>
-		<init-param>
-			<param-name>resetEnable</param-name>
-			<param-value>true</param-value>
-		</init-param>
-		<init-param>
-			 用户名
-			<param-name>loginUsername</param-name>
-			<param-value>i5xwxplus</param-value>
-		</init-param>
-		<init-param> 
-			 密码
-			<param-name>loginPassword</param-name>
-			<param-value>i5xwxplus</param-value>
-		</init-param>		
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>DruidStatView</servlet-name>
-		<url-pattern>/druid/*</url-pattern>
-	</servlet-mapping>
-	<filter>
-		<filter-name>DruidWebStatFilter</filter-name>
-		<filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
-		<init-param>
-			<param-name>exclusions</param-name>
-			<param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
-		</init-param>
-		<init-param>
-			druid 0.2.7版本开始支持profile，配置profileEnable能够监控单个url调用的sql列表。
-			<param-name>profileEnable</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>DruidWebStatFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
-	<!-- druid监控配置 -->
-	
-	<!-- 页面缓存全部使用SimplePageCachingFilter
-	<filter>
-		<description>页面缓存</description>
-	    <filter-name>PageCacheFilter</filter-name>  
-	    <filter-class>net.sf.ehcache.constructs.web.filter.SimplePageCachingFilter</filter-class>
-	</filter>  
-	<filter-mapping>
-	  <filter-name>PageCacheFilter</filter-name>  
-	  <url-pattern>/*</url-pattern>  
-	</filter-mapping> -->
-  
-  	<!-- 页面缓存部分使用SimplePageFragmentCachingFilter 
-	<filter>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<filter-class>net.sf.ehcache.constructs.web.filter.SimplePageFragmentCachingFilter</filter-class>
-		<init-param>
-			<param-name>cacheName</param-name>
-			<param-value>simplePageFragmentCache</param-value>
-		</init-param>	  		
-	</filter>
-	<filter-mapping>
-		<filter-name>SimplePageCachingFilter</filter-name>
-		<url-pattern>/template/component/importcommon.jsp</url-pattern>
-	</filter-mapping> -->
-
-  
-	<session-config>
-		<session-timeout>60</session-timeout>
-	</session-config>
-	
-	<!-- 错误页面 -->
-	<error-page>
-		<error-code>403</error-code>
-		<location>/jsp/common/403.jsp</location>
-	</error-page>
-	<error-page>
-		<error-code>404</error-code>
-		<location>/jsp/common/404.jsp</location>
-	</error-page>
-	<error-page>
-		<error-code>406</error-code>
-		<location>/jsp/common/406.jsp</location>
-	</error-page>
-	<error-page>
-		<error-code>500</error-code>
-		<location>/jsp/common/500.jsp</location>
-	</error-page>
-  
+    <param-name>webAppRootKey</param-name>
+    <param-value>mytest.root</param-value>
+  </context-param>
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>WEB-INF/classes/log4j.properties</param-value>
+  </context-param>
+  <context-param>
+    <param-name>log4jRefreshInterval</param-name>
+    <param-value>3000</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  <context-param>
+    <description>上下文的配置</description>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring-common.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+  <filter>
+    <description>字符编码过滤器</description>
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>openSessionInViewFilter</filter-name>
+    <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+    <init-param>
+      <param-name>singleSession</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>flushMode</param-name>
+      <param-value>AUTO</param-value>
+    </init-param>
+    <init-param>
+      <param-name>sessionFactoryBeanName</param-name>
+      <param-value>sessionFactory</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>openSessionInViewFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description>springDispatcher</description>
+    <servlet-name>springMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springMVC</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>druid监控配置</description>
+    <servlet-name>DruidStatView</servlet-name>
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DruidStatView</servlet-name>
+    <url-pattern>/druid/*</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>DruidWebStatFilter</filter-name>
+    <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+    <init-param>
+      <param-name>exclusions</param-name>
+      <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+    </init-param>
+    <init-param>
+      <param-name>profileEnable</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>DruidWebStatFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <session-config>
+    <session-timeout>60</session-timeout>
+  </session-config>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/jsp/common/403.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/jsp/common/404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>406</error-code>
+    <location>/jsp/common/406.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/jsp/common/500.jsp</location>
+  </error-page>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
