@@ -18,8 +18,9 @@
 	
 	<description>SpringMvc配置文件</description>
       
- 	<context:component-scan base-package="com.xq.*" use-default-filters="false">
-		
+ 	<context:component-scan base-package="com.linkcos.object.*" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
     
 	<!--<mvc:annotation-driven  />关于  注解  http://blog.163.com/zsq303288862@126/blog/static/93745961201262652231478/ 

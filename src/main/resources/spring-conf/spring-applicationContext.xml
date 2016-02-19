@@ -30,7 +30,7 @@
 	 <!-- 启用aspectj支持 用于开启Spring对@AspectJ风格切面的支持-->  
     <aop:aspectj-autoproxy proxy-target-class="true" />
       
- 	<context:component-scan base-package="com.linkcos" use-default-filters="false">
+ 	<context:component-scan base-package="com.linkcos.object.*" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
@@ -157,22 +157,22 @@
 				<!-- 后台输出SQL语句时格式化 -->
 				<prop key="hibernate.format_sql">true</prop>
 				<!-- 数据库表的操作 -->
-				<!-- <prop key="hibernate.hbm2ddl.auto">update</prop> -->
-				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="hibernate.hbm2ddl.auto">none</prop>
 				<!-- INFO: HHH000424: Disabling contextual LOB creation as createClob() 
 					method threw error : -->
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 				<!-- 二级缓存 -->
-				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<!-- <prop key="hibernate.cache.use_second_level_cache">true</prop> -->
 				<!-- 查询缓存 -->
-				<prop key="hibernate.cache.use_query_cache">true</prop>
-				<!-- 缓存工厂-->
-				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop> 
-				<!-- <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop> -->
-				<!-- 自定义的CacheProvider的类名. 取值 classname.of.CacheProvider -->
+				<!-- <prop key="hibernate.cache.use_query_cache">true</prop> -->
+				<!-- 缓存工厂 -->
+				<!-- <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop> 
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
+				自定义的CacheProvider的类名. 取值 classname.of.CacheProvider
 				<prop key="hibernate.cache.provider_class">org.hibernate.cach.ehcache.EhCacheRegionFactory</prop>
-				<!-- <prop key="hibernate.cache.provider_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop> --> 				
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop> 				 -->
 
 			</props>
 		</property>
