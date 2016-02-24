@@ -92,15 +92,6 @@ public class BaseDaoImpl<T,K extends Serializable> implements BaseDao<T, K> {
 	/**
 	 * 根据ID获取对象
 	 */
-	/*@SuppressWarnings("unchecked")
-	@Override
-	public T get(Class<T> c, String id) {
-		return (T) this.getCurrentSession().get(c, id);
-	}*/
-	
-	/**
-	 * 根据ID获取对象
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public T get(Class<T> c, K id) {

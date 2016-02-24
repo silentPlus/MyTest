@@ -18,11 +18,10 @@
 
 	<!-- 读取hibernate.properties 配置文件 -->
 	<description>加载资源文件</description>
-
-	<!-- 引入jdbc配置文件 <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
-		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" 
-		/> <property name="ignoreResourceNotFound" value="true" /> <property name="locations"> 
-		<list> <value>classpath:jdbc.properties</value> </list> </property> </bean> -->
+    
+      
+    <!-- <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />  -->   
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />   
 
 	<!-- 引入jdbc配置文件 -->
 	<context:property-placeholder location="classpath:spring-conf/jdbc.properties" ignore-unresolvable="true"/>
@@ -36,8 +35,6 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
  		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
-	
-	<!-- <bean id="exceptionHandler" class="com.wuuxiang.i5xwxplus.exception.MyExceptionHandler" /> -->
 	
 	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
 	    <property name="slowSqlMillis" value="10000" />
@@ -134,11 +131,6 @@
 			pointcut-ref="druid-stat-pointcut" />
 	</aop:config>
 
-	<!-- jdbc注入 -->
-	<!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean> -->
-	
 	<!-- sessionFactory -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -149,11 +141,11 @@
 				<!-- 方言 -->
 				<prop key="hibernate.dialect">${${currentDatabase}Dialect}</prop>
 				<!-- session -->
-				<prop key="hibernate.current_session_context_class">
+				<!-- <prop key="hibernate.current_session_context_class">
 					org.springframework.orm.hibernate4.SpringSessionContext
-				</prop>
+				</prop> -->
 				<!-- 后台输出SQL语句 -->
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.show_sql">${hibernate.showsql}</prop>
 				<!-- 后台输出SQL语句时格式化 -->
 				<prop key="hibernate.format_sql">true</prop>
 				<!-- 数据库表的操作 -->
@@ -164,15 +156,15 @@
 					method threw error : -->
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
 				<!-- 二级缓存 -->
-				<!-- <prop key="hibernate.cache.use_second_level_cache">true</prop> -->
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
 				<!-- 查询缓存 -->
-				<!-- <prop key="hibernate.cache.use_query_cache">true</prop> -->
+				<prop key="hibernate.cache.use_query_cache">true</prop>
 				<!-- 缓存工厂 -->
-				<!-- <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop> 
-				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
-				自定义的CacheProvider的类名. 取值 classname.of.CacheProvider
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop> 
+ 				<!-- <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop> -->
+				<!-- 自定义的CacheProvider的类名. 取值 classname.of.CacheProvider -->
 				<prop key="hibernate.cache.provider_class">org.hibernate.cach.ehcache.EhCacheRegionFactory</prop>
-				<prop key="hibernate.cache.provider_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop> 				 -->
+				<!-- <prop key="hibernate.cache.provider_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop> --> 				
 
 			</props>
 		</property>
@@ -180,22 +172,18 @@
 		<property name="packagesToScan" value="com.linkcos.object.entity" />
 	</bean>
 
-	<!-- jdbc o2o库 事务管理 -->
+	<!-- jdbc 事务管理 -->
 	<bean id="to" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	    <property name="dataSource" ref="dataSource"></property>
 	</bean>
-	<!-- jdbc crm库 事务管理 -->
-	<!-- <bean id="tc" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-	    <property name="dataSource" ref="crmDataSource"></property>
-	</bean> -->
 	<!-- hibernate4 事务管理 -->
-	<!-- <bean id="tso" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<bean id="tso" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
-	</bean> -->
-	
-	<!-- 启用事物注解定义
-	<tx:annotation-driven transaction-manager="transactionManager" /> -->
-	
+	</bean> 
+    
+	<!-- 启用事物注解定义 -->
+	<tx:annotation-driven transaction-manager="tso" /> 
+
 	<!-- 配置事务传播特性 -->
 	<tx:advice id="transactionAdvice" transaction-manager="to">
 		<tx:attributes>
@@ -207,22 +195,10 @@
         <aop:pointcut id="serviceMethods" expression="execution(* com.linkcos.object.service..*.*(..))" />       
         <aop:advisor advice-ref="transactionAdvice" pointcut-ref="serviceMethods" />
 	</aop:config> 		
-	<!-- 配置事务传播特性 -->
-	<!-- <tx:advice id="transactionAdvice" transaction-manager="tc">
-		<tx:attributes>
-			<tx:method name="multiDs*" propagation="REQUIRED"  rollback-for="Exception"/>
-		</tx:attributes>
-	</tx:advice> -->
-	<!-- 配置哪些类的哪些方法参与事务	 -->
-	<!-- <aop:config>
-        <aop:pointcut id="serviceMethods" expression="execution(* com.wuuxiang.i5xwxplus.service..*.*(..))" />       
-        <aop:advisor advice-ref="transactionAdvice" pointcut-ref="serviceMethods" />
-	</aop:config>    -->
 
 	<!-- 通过注解来管理事务 -->
 	<tx:annotation-driven transaction-manager="to" proxy-target-class="true" />
-	<!-- <tx:annotation-driven transaction-manager="tc" proxy-target-class="true" />
-	<tx:annotation-driven transaction-manager="tso" proxy-target-class="true" /> -->
+	<tx:annotation-driven transaction-manager="tso" proxy-target-class="true" /> 
 	
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -233,16 +209,16 @@
 	</bean>
 
   <!-- 指定ehcache.xml的位置 -->
-	<!-- <bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+	<bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
 		<property name="configLocation" value="classpath:ehcache.xml" />
-		解决和hibernate同用ehcache报存在同名cache的错 这里cache是和Spring独用,还是跟别的共享
+		<!-- 解决和hibernate同用ehcache报存在同名cache的错 这里cache是和Spring独用,还是跟别的共享 -->
 		<property name="shared" value="true" />
 		<property name="acceptExisting" value="true" />
 	</bean>
-	声明缓存Manager
+	<!-- 声明缓存Manager -->
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
         <property name="cacheManager" ref="cacheManagerFactory" />
-    </bean> -->
+    </bean>
 	
 	
 </beans>

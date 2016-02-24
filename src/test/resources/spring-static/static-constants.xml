@@ -10,8 +10,8 @@
 	<!-- 定义加载资源文件 -->
 	<context:property-placeholder location="classpath:spring-static/static-constants.properties" ignore-unresolvable="true" />
 	   
-   	<bean class="com.wuuxiang.i5xwxplus.constants.ConfigConstants">
-       <!-- test txt -->
-       <property name="TXT" value="${test.txt}" />
+   	<bean class="com.linkcos.object.constants.ConfigConstants">
+       <!-- test TEST_TXT -->
+       <property name="TEST_TXT" value="${test.txt}" />
     </bean>
 </beans>

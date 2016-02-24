@@ -24,8 +24,8 @@
     <!--[if lt IE 9]>
     <p class="browsehappy">你正在使用一个 <strong>过时</strong> 浏览器. 请升级你的浏览器获得更好的体验.<br>推荐使用chrome谷歌浏览器!</p>
     <![endif]-->
-    ${ msg }
-    <!-- <div id="mainMenu" ng-show="showSideBar.isShow" style="display:none;">
+    <%-- ${ msg }&nbsp;&nbsp;${ txt } --%>
+    <div id="mainMenu" ng-show="showSideBar.isShow" style="display:none;">
         <img style="position:fixed;left:0;top:0;height:100%;width:100%;z-index:-1" class="img-responsive" ng-src="../ngcssbiz/img/bg.jpg">
         <div class="page" ng-controller="loginController" ng-init="initializeController()">
             <div class="row">
@@ -71,7 +71,7 @@
             </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <script type="text/javascript" src="http://tajs.qq.com/h5?sId=500000817" charset="UTF-8"></script>
     <script>
         window.onload = function(){

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.linkcos.object.constants.ConfigConstants;
 import com.linkcos.object.service.HelloService;
 
 @Controller
@@ -24,6 +25,7 @@ public class HelloController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/index");
 		mav.addObject("msg", msg);
+		mav.addObject("txt", ConfigConstants.TEST_TXT);
         return mav;
     }
 }
