@@ -10,7 +10,7 @@
       <body>  
         <h1>登录页面----${message }</h1>  
         <img alt="" src="/static/img/1.jpg">  
-        <form:form action="/login" commandName="user" method="post">  
+        <form:form action="login" commandName="user" method="post">  
             用户名：<form:input path="username"/> <form:errors path="username" cssClass="error"/> <br/>  
             密 &nbsp;&nbsp;码：<form:password path="password"/> <form:errors path="password" cssClass="error" /> <br/>  
             <form:button name="button">submit</form:button>  

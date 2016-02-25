@@ -20,7 +20,10 @@
   <context-param>
     <description>上下文的配置</description>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:spring-common.xml</param-value>
+    <param-value>
+    	classpath:spring-common.xml
+    	classpath:spring-shiro/spring-shiro.xml
+    </param-value>
   </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

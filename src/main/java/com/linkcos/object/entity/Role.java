@@ -3,7 +3,8 @@ package com.linkcos.object.entity;
 import java.util.ArrayList;  
 import java.util.List;  
   
-import javax.persistence.Entity;  
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;  
 import javax.persistence.GenerationType;  
 import javax.persistence.Id;  
@@ -37,14 +38,14 @@ public class Role {
     public void setRolename(String rolename) {  
         this.rolename = rolename;  
     }  
-    @OneToMany(mappedBy="role")  
+    @OneToMany(mappedBy="role",fetch=FetchType.EAGER )  
     public List<Permission> getPermissionList() {  
         return permissionList;  
     }  
     public void setPermissionList(List<Permission> permissionList) {  
         this.permissionList = permissionList;  
     }  
-    @ManyToMany  
+    @ManyToMany(fetch=FetchType.EAGER)  
     @JoinTable(name="t_user_role",joinColumns={@JoinColumn(name="role_id")},inverseJoinColumns={@JoinColumn(name="user_id")})  
     public List<User> getUserList() {  
         return userList;  
