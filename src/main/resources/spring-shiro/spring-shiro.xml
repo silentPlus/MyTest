@@ -26,7 +26,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <!-- 调用我们配置的权限管理器 -->   
         <property name="securityManager" ref="securityManager"/>   
         <!-- 配置我们的登录请求地址 -->   
-        <property name="loginUrl" value="/home/login"/>    
+        <property name="loginUrl" value="/home/index.html"/>    
         <!-- 配置我们在登录页登录成功后的跳转地址，如果你访问的是非/login地址，则跳到您访问的地址 -->  
         <property name="successUrl" value="/aaa/bbb.html"/>    
         <!-- 如果您请求的资源不再您的权限范围，则跳转到/403请求地址 -->  
@@ -36,7 +36,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
             <value>    
                 <!-- anon表示此地址不需要任何权限即可访问 -->  
                 <!-- /static/**=anon -->
-                /home/login=anon  
+                /home/index.html = anon  
+                /home/login.html = anon
                 <!-- perms[user:query]表示访问此连接需要权限为user:query的用户 -->  
                 <!-- /user=perms[user:query]  
                 /aaa/bbb.html = perms[user:query] -->

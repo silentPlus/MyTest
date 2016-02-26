@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
-<c:set var="ctx" value="http://static.wuuxiang.com/i5xwxplus/20150215" scope="request"/> <%-- [scope="{page|request|session|application}"] --%>
+<c:set var="ctx" value="http://192.168.9.124/mytest" scope="request"/> <%-- [scope="{page|request|session|application}"] --%>
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1, initial-scale=1, user-scalable=0">

@@ -32,7 +32,7 @@ public class MyShiro extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-		// 获取登录时用户名
+		/*// 获取登录时用户名
 		String loginName = (String)principalCollection.fromRealm(getName()).iterator().next();
 		// 到数据库查是否有此对象
 		User user = userService.findByName(loginName);
@@ -47,7 +47,7 @@ public class MyShiro extends AuthorizingRealm {
 				//info.addStringPermissions(role.getPermissionsName());
 			//}
 			return info;
-		}
+		}*/
 		return null;
 	}
 
