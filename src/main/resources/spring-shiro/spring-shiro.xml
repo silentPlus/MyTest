@@ -31,13 +31,29 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <property name="successUrl" value="/aaa/bbb.html"/>    
         <!-- 如果您请求的资源不再您的权限范围，则跳转到/403请求地址 -->  
         <property name="unauthorizedUrl" value="/home/403"/>    
-        <!-- 权限配置 -->  
-        <property name="filterChainDefinitions">    
-            <value>    
+        <property name="filters">
+        	<map>  
+                <entry key="role">  
+                    <bean  
+                        class="com.linkcos.object.shiro.RoleAuthorizationFilter" />  
+                </entry>
+                <entry key="authc">  
+                    <bean  
+                        class="com.linkcos.object.shiro.SimpleFormAuthenticationFilter" />  
+                </entry>  
+            </map> 
+        </property>
+    </bean>  
+      
+    <!-- 权限配置 -->  
+    <bean id="filterChainDefinitionsService" class="com.linkcos.object.shiro.SimpleFilterChainDefinitionsService">  
+        <property name="definitions">  
+            <value>  
                 <!-- anon表示此地址不需要任何权限即可访问 -->  
                 <!-- /static/**=anon -->
-                /home/index.html = anon  
-                /home/login.html = anon
+                /mp/index.html = anon
+                <!-- /mp/login/getmpuser.html = anon --> 
+                /mp/login/index.html = anon 
                 <!-- perms[user:query]表示访问此连接需要权限为user:query的用户 -->  
                 <!-- /user=perms[user:query]  
                 /aaa/bbb.html = perms[user:query] -->
@@ -48,11 +64,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
                 <!-- /aaa/bbb.html = roles[admin] 
                 /user = roles[admin] -->
                 <!--所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过登录验证,如果未登录则跳到/login-->    
-                /** = authc  
-            </value>    
-        </property>    
-    </bean>  
-      
+                /** = authc    
+            </value>  
+        </property>  
+    </bean>
       
     <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />    
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />   

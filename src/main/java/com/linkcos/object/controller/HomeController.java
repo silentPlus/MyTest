@@ -43,7 +43,7 @@ public class HomeController extends BaseClass{
             jsonPackage.setResult(url);
             return jsonPackage;
         } catch (AuthenticationException e) {  
-        	jsonPackage.setMessage("用户名或密码错误");
+        	jsonPackage.setMessage("用户名错误");
         	jsonPackage.setStatus(1);
         	return jsonPackage;
         }  
