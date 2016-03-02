@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class BaseClass {
 
     protected final Log log = LogFactory.getLog(getClass());
+    protected final Logger logger = LoggerFactory . getLogger (getClass());
 
 	 /**
      * 全局获取request

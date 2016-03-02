@@ -8,12 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.linkcos.object.base.BaseClass;
 import com.linkcos.object.constants.ConfigConstants;
 import com.linkcos.object.service.HelloService;
 
 @Controller
 @RequestMapping("/aaa")
-public class HelloController {
+public class HelloController extends BaseClass{
 	
 	@Autowired
 	private HelloService helloService;
@@ -26,6 +27,7 @@ public class HelloController {
 		mav.setViewName("/index");
 		mav.addObject("msg", msg);
 		mav.addObject("txt", ConfigConstants.TEST_TXT);
+		logger.debug("message");
         return mav;
     }
 }

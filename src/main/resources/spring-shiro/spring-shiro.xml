@@ -51,9 +51,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
             <value>  
                 <!-- anon表示此地址不需要任何权限即可访问 -->  
                 <!-- /static/**=anon -->
-                /mp/index.html = anon
-                <!-- /mp/login/getmpuser.html = anon --> 
-                /mp/login/index.html = anon 
+                /home/index.html = anon
+                /home/login.html = anon 
                 <!-- perms[user:query]表示访问此连接需要权限为user:query的用户 -->  
                 <!-- /user=perms[user:query]  
                 /aaa/bbb.html = perms[user:query] -->

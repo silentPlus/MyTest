@@ -87,17 +87,6 @@ public class SimpleFormAuthenticationFilter extends FormAuthenticationFilter{
                 if (log.isTraceEnabled()) {
                     log.trace("Login submission detected.  Attempting to execute login.");
                 }
-                System.out.println(((HttpServletRequest) request).getHeader("X-Requested-With"));
-
-                if ("XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request)
-								.getHeader("X-Requested-With"))) {// ajax请求
-					response.setCharacterEncoding("UTF-8");
-					PrintWriter out = response.getWriter();
-					out.println("{success:false,message:'验证码错误'}");
-					out.flush();
-					out.close();
-					return false;
-				}
                 return executeLogin(request, response);
             } else {
                 if (log.isTraceEnabled()) {
@@ -111,7 +100,6 @@ public class SimpleFormAuthenticationFilter extends FormAuthenticationFilter{
                 log.trace("Attempting to access a path which requires authentication.  Forwarding to the " +
                         "Authentication url [" + getLoginUrl() + "]");
             }
-            System.out.println(((HttpServletRequest) request).getHeader("X-Requested-With"));
             if (!"XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request)
 							.getHeader("X-Requested-With"))) {// 不是ajax请求
 				saveRequestAndRedirectToLogin(request, response);

@@ -19,10 +19,6 @@
 	<!-- 读取hibernate.properties 配置文件 -->
 	<description>加载资源文件</description>
     
-      
-    <!-- <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />  -->   
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />   
-
 	<!-- 引入jdbc配置文件 -->
 	<context:property-placeholder location="classpath:spring-conf/jdbc.properties" ignore-unresolvable="true"/>
 	

@@ -5,7 +5,8 @@
 
 	<description>加载资源文件</description>
 	<import resource="classpath:spring-conf/spring-applicationContext.xml" />
-	<!-- <import resource="classpath:spring-static/static-constants.xml" />
-	<import resource="classpath:spring-mybatis/spring-mybatis.xml" /> -->
-	<import resource="classpath:spring-redis/spring-redis.xml" />
+	<import resource="classpath:spring-static/static-constants.xml" />
+	<!-- <import resource="classpath:spring-shiro/spring-shiro.xml" /> -->
+	<!-- <import resource="classpath:spring-mybatis/spring-mybatis.xml" /> -->
+	<!-- <import resource="classpath:spring-redis/spring-redis.xml" /> -->
 </beans>
