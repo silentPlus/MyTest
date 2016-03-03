@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.linkcos.object.service.HelloService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:spring-conf/spring-applicationContext.xml","classpath*:logback.xml"})
+@ContextConfiguration(locations = {"classpath*:logback.xml","classpath*:spring-conf/spring-applicationContext.xml"})
 public class HelloControllerTest {
 	@Autowired
 	private HelloService helloService;
