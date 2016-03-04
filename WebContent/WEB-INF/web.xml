@@ -13,10 +13,10 @@
   <context-param>
     <param-name>log4jRefreshInterval</param-name>
     <param-value>3000</param-value>
-  </context-param> -->
+  </context-param>
   <listener>
     <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-  </listener>
+  </listener> -->
   <context-param>
     <description>上下文的配置</description>
     <param-name>contextConfigLocation</param-name>
