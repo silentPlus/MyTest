@@ -53,6 +53,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
                 <!-- /static/**=anon -->
                 /home/index.html = anon
                 /home/login.html = anon 
+                /lbClassicStatus = anon
                 <!-- perms[user:query]表示访问此连接需要权限为user:query的用户 -->  
                 <!-- /user=perms[user:query]  
                 /aaa/bbb.html = perms[user:query] -->

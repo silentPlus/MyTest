@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
-<configuration>
+<configuration scan="true" scanPeriod="1 hours" debug="false">
 
     <property name="USER_HOME" value="logs" />
     <property scope="context" name="FILE_NAME" value="mylog-logback" />
@@ -36,7 +36,7 @@
 
     </appender>
 
-    <logger name="com.linkcos.object.*" level="info" additivity="false">
+    <logger name="com.linkcos.object" level="warn" additivity="true">
         <appender-ref ref="file" />
         <!-- <appender-ref ref="STDOUT" /> -->
     </logger>
