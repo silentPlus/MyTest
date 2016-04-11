@@ -20,28 +20,11 @@ import com.linkcos.object.aop.BaseAspect;
 @Component
 public class OAuth2Aspect extends BaseAspect {
 
-
-//    @Resource(name = "o2oJdbcBaseDao")
-//    private JdbcBaseDao<WeChatUser> o2oDao;
-//    @Autowired
-//    private O2OJdbcBaseDao<WeChatUser> o2oDao;
-
     @Pointcut("@annotation(com.linkcos.object.aop.login.OAuth2)")
     private void pointCut() {}
-    /**
-     *
-     * doBefore:在加了<strong>NeedAouth2</strong>标签的方法前执行网页授权方法，将用户信息加入到session中(
-     * 暂时限定返回值为ModelAndView的方法). <br/>
-     * Date: 2014年12月23日 上午9:47:38 <br/>
-     *
-     * @author 李国煜
-     * @param pjp
-     * @return
-     * @throws Throwable
-     */
+  
     @Around(value = "pointCut()")
     public Object doAround(ProceedingJoinPoint point) throws Throwable {
-    	//sUser +　sFace    {'sUser':'tcsl','sFace':'center'} //scope
 		Method method = ((MethodSignature) point.getSignature()).getMethod();
 	  	//Class<?>[] parameterTypes =  ((MethodSignature) pjp.getSignature()).getParameterTypes();
     	//Method method = pjp.getTarget().getClass().getMethod(pjp.getSignature().getName(), parameterTypes);
