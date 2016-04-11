@@ -1,17 +1,7 @@
 package com.linkcos.object.vo;
 
 import com.alibaba.fastjson.JSONObject;
-/**
- * 用于简单业务AJAX处理的JSON类
- * 
- * status  : 0是成功,其他异常
- * message : 返回的信息
- * result  : 默认结果级，可以不使用 
- * 
- * @author 微信攻略组 2014-01-20
- * @version 3.0
- * 
- */
+
 public class JsonPackage extends JSONObject {
 
 	private static final long serialVersionUID = 4755035452111551675L;
