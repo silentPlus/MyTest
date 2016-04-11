@@ -2,14 +2,7 @@ package com.linkcos.object.vo;
 
 import java.util.List;
 
-/**
- * 分页信息
- * 
- * @author 微信攻略组 2014-01-20
- * @version 1.0
- * 
- * @param <M>
- */
+
 public class PageInfo<M> {
 
 	/**
