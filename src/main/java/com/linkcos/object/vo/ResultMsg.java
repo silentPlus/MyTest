@@ -1,15 +1,6 @@
 package com.linkcos.object.vo;
 
-/**
- * ClassName: ResultMsg <br/>
- * Function: TODO ADD FUNCTION. <br/>
- * Reason: TODO ADD REASON(可选). <br/>
- * date: 2015年1月19日 下午5:09:14 <br/>
- *
- * @author 李国煜
- * @version
- * @since JDK 1.7
- */
+
 public class ResultMsg {
 
 	private Results state;			// 状态标示符的枚举类
